@@ -1,0 +1,402 @@
+:root {
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --bg-color: #0f172a;
+  --card-bg: #1e293b;
+  --text-light: #f8fafc;
+  --text-muted: #94a3b8;
+  --accent: #ec4899;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-light);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  .app-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.header {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(to right, #818cf8, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.header p {
+  color: var(--text-muted);
+}
+
+.controls-panel {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  height: max-content;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.control-group label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.file-upload-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 0.75rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+}
+
+.file-upload-btn:hover {
+  border-color: var(--primary);
+  background: rgba(99, 102, 241, 0.05);
+  color: var(--primary);
+}
+
+.button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.button:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.preview-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.cards-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.card-wrapper {
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.card-wrapper:hover {
+  transform: scale(1.02);
+}
+
+/* Card Design CSS */
+.tcg-card {
+  width: 500px;
+  height: 700px;
+  background-color: #fff;
+  border-radius: 0;
+  border: 10px solid #fff; /* Outer white border */
+  position: relative;
+  overflow: visible; /* to allow top notch to stick out */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  font-family: 'Arial', sans-serif;
+  color: black;
+  background-size: cover;
+  background-position: center;
+}
+
+.tcg-card-border-outer {
+  width: 100%;
+  height: 100%;
+  border: 12px solid #000; /* Thin black line */
+  padding: 5px; /* Inner transparent padding */
+  background-color: transparent;
+  position: relative;
+}
+
+.tcg-card-border {
+  width: 100%;
+  height: 100%;
+  border: 6px solid #000; /* Thick black line around content */
+  background-color: transparent;
+  position: relative;
+}
+
+.tcg-card-content {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.tcg-top-black-trait {
+  width: 80px;
+  position: absolute;
+  top: -21px; /* sticks out above the outer border */
+  height: 10px;
+  background-color: black;
+  z-index: 5;
+}
+
+.tcg-top-banner {
+  background-color: #000;
+  color: #fff;
+  transform: skewX(-30deg);
+  border-radius: 15px 0 15px 0;
+  padding: 10px 40px;
+  position: absolute;
+  top: 15px;
+  left: 25px;
+  right: 100px;
+  z-index: 2;
+  text-align: center;
+}
+
+.tcg-top-banner-content {
+  transform: skewX(20deg);
+}
+
+.tcg-title {
+  font-size: 26px;
+  font-weight: 900;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.tcg-subtitle {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.tcg-logo {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 80px;
+  padding: 5px;
+  height: auto;
+  z-index: 3;
+}
+
+.tcg-middle {
+  display: flex;
+  margin-top: 85px;
+  padding: 0 15px;
+  height: 220px;
+}
+
+.tcg-rarity-container {
+  width: 45px;
+  background: #ffffff;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px 5px;
+  margin-right: 15px;
+  margin-left: -10px;
+  margin-top: 10px;
+  position: relative;
+  border: 1px solid #ddd;
+}
+
+.tcg-rarity-text {
+  position: absolute;
+  left: -70px;
+  top: 100px; /* shifted slightly down */
+  bottom: 0;
+  margin: auto;
+  width: 100px;
+  height: 20px;
+  transform: rotate(-90deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.tcg-stars {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tcg-star-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3));
+}
+
+.tcg-photo-container {
+  flex: 1;
+  margin-top: 10px;
+  border: 2px solid #333;
+  border-radius: 0;
+  overflow: hidden;
+  background: #fff;
+  position: relative;
+}
+
+.tcg-photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+
+.tcg-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px 10px;
+  padding: 15px;
+  margin-top: 5px;
+}
+
+.tcg-stat {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.tcg-stat-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 900;
+  color: #000;
+  background-color: #ddd; /* Fallback */
+}
+
+
+
+.tcg-stat-name {
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.tcg-quote {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 900;
+  font-style: normal;
+  margin-top: auto;
+  margin-bottom: 35px;
+  padding: 0 20px;
+}
+
+.tcg-bottom-bar {
+  position: absolute;
+  bottom: -10px; /* sits exactly on top of the 8px white bottom border */
+  left: 0px;
+  width: calc(100% + 0px);
+  height: 10px; /* slightly thicker to cover the white border perfectly */
+  display: flex;
+  z-index: 10;
+}
+
+.tcg-bottom-segment {
+  flex: 1;
+}
+
+/* Colors for stats matching screenshot */
+.stat-color-0 { background-color: #8dc63f; } /* Green */
+.stat-color-1 { background-color: #fff200; } /* Yellow */
+.stat-color-2 { background-color: #00aeef; } /* Blue */
+.stat-color-3 { background-color: #ffffff; } /* White */
+.stat-color-4 { background-color: #f7941d; } /* Orange */
+.stat-color-5 { background-color: #ed1c24; } /* Red */
+
+.empty-state {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 4rem;
+  background: rgba(255,255,255,0.02);
+  border-radius: 12px;
+  border: 1px dashed rgba(255,255,255,0.1);
+  width: 100%;
+}
