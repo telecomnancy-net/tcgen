@@ -211,7 +211,7 @@ export default function App() {
               
               <div className="tcg-top-banner">
                 <div className="tcg-top-banner-content">
-                  <h2 className="tcg-title">{name}</h2>
+                  <h2 className={name.length > 12 ? (name.length > 20 ? "tcg-title-very-small" : "tcg-title-small") : "tcg-title"}>{name}</h2>
                   {subtitle && <p className="tcg-subtitle">dit "{subtitle}"</p>}
                 </div>
               </div>
